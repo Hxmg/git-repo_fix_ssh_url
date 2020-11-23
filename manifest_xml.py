@@ -155,7 +155,7 @@ class _XmlRemote(object):
     return self.__dict__ != other.__dict__
 
   def _resolveFetchUrl(self):
-    url = self.fetchUrl.rstrip('/')
+    url = self.fetchUrl
     #manifestUrl = self.manifestUrl.rstrip('/')
     manifestUrl = ""
     # urljoin will gets confused over quite a few things.  The ones we care
@@ -164,11 +164,11 @@ class _XmlRemote(object):
     # We handle no scheme by replacing it with an obscure protocol, gopher
     # and then replacing it with the original when we are done.
 
-    if manifestUrl.find(':') != manifestUrl.find('/') - 1:
-      url = urllib.parse.urljoin('gopher://' + manifestUrl, url)
-      url = re.sub(r'^gopher://', '', url)
-    else:
-      url = urllib.parse.urljoin(manifestUrl, url)
+    #if manifestUrl.find(':') != manifestUrl.find('/') - 1:
+    #  url = urllib.parse.urljoin('gopher://' + manifestUrl, url)
+    #  url = re.sub(r'^gopher://', '', url)
+   # else:
+   #   url = urllib.parse.urljoin(manifestUrl, url)
     return url
 
   def ToRemoteSpec(self, projectName):
